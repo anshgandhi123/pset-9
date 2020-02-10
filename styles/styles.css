@@ -1,0 +1,17 @@
+* {
+  text-decoration: none;
+}
+
+.heading {
+  padding: 5px;
+  padding-left: 15px;
+}
+
+.non-bold {
+  text-decoration: none;
+}
+
+.navigationbar {
+  background-color: black;
+  color: white;
+}
