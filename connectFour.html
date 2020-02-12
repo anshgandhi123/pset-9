@@ -3,9 +3,10 @@
   <head>
     <title>APCSP Problem Set 9</title>
     <link rel="stylesheet" href="styles/styles.css"/>
+    <link rel="stylesheet" href="styles/connectFour.css"/>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="js/app.js"></script>
+    <script type="text/javascript" src="js/connect.js"></script>
   </head>
   <body>
     <!-- navigation bar -->
@@ -18,7 +19,59 @@
       </div>
     </div>
     <h1 class="heading">Connect Four</h1>
-    <h5 class="headers">Welcome to Connect Four! All normal rules apply to this game! Currently, you can play against an AI! You may be prompted to see who goes first.</h5>
+    <h5 class="headers">Welcome to Connect Four! All normal rules apply to this game! Currently, you can play against an AI or another player! You may be prompted to see who goes first.</h5>
     <h6 class="headers">Have fun!</h6>
+    <!-- game -->
+    <div class="container column">
+    <h2>Turn: X</h2>
+    <h3 id="xWinCount" class="count"> X Score<li id="list"></li></h3>
+    <h3 id="xWinCount" class="count"> O Score <li id="secondList"></li></h3>
+    <h3 id="tieCount" class="count"> Tie Score <li id="thirdList"></li></h3>
+    <div class="container wrap" id="board">
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+      <div class="square"></div>
+    </div>
+    <div id="reset-button">Play Again!</div>
+  </div>
   </body>
 </html>
