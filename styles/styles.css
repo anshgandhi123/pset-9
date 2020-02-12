@@ -1,17 +1,46 @@
 * {
   text-decoration: none;
+  background-color: lightgray;
+  color: black;
 }
 
 .heading {
   padding: 5px;
   padding-left: 15px;
+  text-align: center;
+  color: blue;
 }
 
-.non-bold {
+.headers {
   text-decoration: none;
+  text-align: center;
+  font: 16px;
+  color: purple;
 }
 
 .navigationbar {
   background-color: black;
   color: white;
+  padding-left: 0px;
+}
+
+.image {
+  padding-left: 700px;
+  align: right;
+}
+
+.images {
+  padding-left: 25px;
+}
+
+.paragraph {
+  text-decoration: none;
+  text-align: left;
+  color: purple;
+  font: 12px;
+  padding-left: 5px;
+}
+
+.list {
+  padding-left: 25px;
 }
