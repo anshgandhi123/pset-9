@@ -44,3 +44,8 @@
 .list {
   padding-left: 25px;
 }
+
+body {
+  text-align: center;
+  font-family: "Roboto", monospace;
+}
