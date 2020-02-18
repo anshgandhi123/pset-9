@@ -13,8 +13,8 @@ const winningConditions = [
 let board;
 let turn;
 let win;
-let xWinCount = 0;
-let oWinCount = 0;
+let redWinCount = 0;
+let yellowWinCount = 0;
 let tieCount = 0;
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const squares = Array.from(document.querySelectorAll("#board div"));
@@ -26,7 +26,6 @@ document.getElementById("reset-button").onclick = init;
 ///////////////////// FUNCTIONS /////////////////////////////////////
 function init() {
   board = [
-    "", "", "",
     "", "", "",
     "", "", "",
     "", "", "",
@@ -45,10 +44,10 @@ function first() {
     }
     a = String(a)
     a = a.toUpperCase()
-    if (a != "X" && a != "x" && a != "O" && a != "o") {
-      window.alert("Invalid value. Please type either X or O.")
+    if (a != "RED" && a != "YELLOW" && a != "red" && a != "yellow") {
+      window.alert("Invalid value. Please type either red or yellow.")
     }
-  } while (a != "X" && a != "x" && a != "O" && a != "o" && a != null)
+  } while (a != "RED" && a != "YELLOW" && a != "red" && a != "yellow" && a != null)
   return a
 }
 
@@ -56,8 +55,7 @@ function render() {
   board.forEach(function(mark, index) {
     squares[index].textContent = mark;
   });
-  message.textContent =
-    win === "T" ? "It's a tie!" : win ? `${win} wins!` : `Turn: ${turn}`;
+  message.textContent = win === "T" ? "It's a tie!" : win ? `${win} wins!` : `Turn: ${turn}`;
 }
 
 function takeTurn(e) {
@@ -67,7 +65,7 @@ function takeTurn(e) {
     });
     if (board[index] === "") {
       board[index] = turn;
-      turn = turn === "X" ? "O" : "X";
+      turn = turn === "Red" ? "Yellow" : "Red";
       win = getWinner();
       if (win === "T") {
         tieCount++;
@@ -87,13 +85,13 @@ function getWinner() {
       board[condition[1]] === board[condition[2]]
     ) {
       winner = board[condition[0]];
-      if (winner === "X") {
+      if (winner === "Red") {
         xWinCount++;
-        document.getElementById("list").innerHTML = xWinCount;
+        document.getElementById("list").innerHTML = redWinCount;
       }
-      if (winner === "O") {
+      if (winner === "Yellow") {
         oWinCount++;
-        document.getElementById("secondList").innerHTML = oWinCount;
+        document.getElementById("secondList").innerHTML = yellowWinCount;
       }
   }
 });
