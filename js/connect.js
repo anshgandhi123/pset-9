@@ -34,9 +34,12 @@ document.getElementById("reset-button").onclick = init;
 ///////////////////// FUNCTIONS /////////////////////////////////////
 function init() {
   board = [
-    "", "", "",
-    "", "", "",
-    "", "", "",
+    "", "", "", "", "", "", "",
+    "", "", "", "", "", "", "",
+    "", "", "", "", "", "", "",
+    "", "", "", "", "", "", "",
+    "", "", "", "", "", "", "",
+    "", "", "", "", "", "", "",
 
   ];
   turn = first();
@@ -73,7 +76,7 @@ function takeTurn(e) {
     });
     if (board[index] === "") {
       board[index] = turn;
-      turn = turn === "Red" ? "Yellow" : "Red";
+      turn = turn === "red" ? "yellow" : "red";
       win = getWinner();
       if (win === "T") {
         tieCount++;
