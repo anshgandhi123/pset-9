@@ -1,6 +1,6 @@
 ///////////////////// CONSTANTS /////////////////////////////////////
 const winningConditions = [
-  [0, 1, 2], 
+  [0, 1, 2],
   [3, 4, 5],
   [6, 7, 8],
   [0, 3, 6],
@@ -19,6 +19,8 @@ let tieCount = 0;
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const squares = Array.from(document.querySelectorAll("#board div"));
 const message = document.querySelector("h2");
+const victoryAudio = document.getElementById("victoryAudio");
+const tieAudio = document.getElementById("tieAudio");
 ///////////////////// EVENT LISTENERS ///////////////////////////////
 window.onload = init;
 document.getElementById("board").onclick = takeTurn;
@@ -33,6 +35,10 @@ function init() {
   turn = first();
   win = null;
   render();
+  victoryAudio.pause();
+  victoryAudio.currentTime = 0
+  tieAudio.pause();
+  tieAudio.currentTime = 0;
 }
 
 function first() {
@@ -88,10 +94,15 @@ function getWinner() {
       if (winner === "X") {
         xWinCount++;
         document.getElementById("list").innerHTML = xWinCount;
+        victoryAudio.play();
       }
       if (winner === "O") {
         oWinCount++;
         document.getElementById("secondList").innerHTML = oWinCount;
+        victoryAudio.play();
+      }
+      if (win === "T") {
+        tieAudio.play();
       }
   }
 });
