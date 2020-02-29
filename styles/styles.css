@@ -1,21 +1,28 @@
 * {
   text-decoration: none;
-  background-color: lightgray;
   color: black;
+  font: Arial;
+}
+body {
+    background-image: url('https://i.gifer.com/PvIF.gif');
+    background-size: cover;
+    height: 100vh;
+    padding:0;
+    margin:0;
 }
 
 .heading {
   padding: 5px;
   padding-left: 15px;
   text-align: center;
-  color: blue;
+  color: red;
 }
 
 .headers {
   text-decoration: none;
   text-align: center;
   font: 16px;
-  color: purple;
+  color: orange;
 }
 
 .navigationbar {
@@ -36,7 +43,7 @@
 .paragraph {
   text-decoration: none;
   text-align: left;
-  color: purple;
+  color: orange;
   font: 12px;
   padding-left: 5px;
 }
