@@ -15,7 +15,7 @@ let turn;
 let win;
 let xWinCount = 0;
 let oWinCount = 0;
-let tieCount = 0; 
+let tieCount = 0;
 ///////////////////// CACHED ELEMENT REFERENCES /////////////////////
 const squares = Array.from(document.querySelectorAll("#board div"));
 const message = document.querySelector("h2");
