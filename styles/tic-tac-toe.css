@@ -1,28 +1,44 @@
 * {
-  background-color: gray;
-  list-style-type: none;
+  text-decoration: none;
+  color: black;
+  font: Arial;
 }
+body {
+    background-image: url('https://i.gifer.com/DoOj.gif');
+    background-size: cover;
+    height: 100vh;
+    padding:0;
+    margin:0;
+}
+
+.heading {
+  padding: 5px;
+  padding-left: 15px;
+  text-align: center;
+  color: red;
+}
+
+.headers {
+  text-decoration: none;
+  text-align: center;
+  font: 16px;
+  color: orange;
+}
+
+.navigationbar {
+  background-color: black;
+  color: white;
+  padding-left: 0px;
+}
+
 
 body {
   text-align: center;
-  font-family: "Roboto", monospace;
-}
-
-h1 {
-  margin: 0 auto;
-  font-family: "Major Mono Display", monospace;
-  font-size: 48px;
-  margin: 2%;
-}
-
-h2 {
-  font-size: 36px;
-  font-weight: lighter;
-  margin: 2%;
+  font-family: "Autorich Sans", monospace;
 }
 
 .count {
-  color: blue;
+  color: orange;
   padding-bottom: 1px;
 }
 
@@ -45,7 +61,7 @@ h2 {
 }
 
 .square {
-  border: 1px solid rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(0, 255, 0, 0.75);
   font-size: 96px;
   height: 150px;
   line-height: 150px;
@@ -86,4 +102,4 @@ h2 {
  #tieCount {
    list-style-type: none;
    float: right;
- } 
+ }

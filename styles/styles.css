@@ -31,28 +31,8 @@ body {
   padding-left: 0px;
 }
 
-.image {
-  padding-left: 700px;
-  align: right;
-}
-
-.images {
-  padding-left: 25px;
-}
-
-.paragraph {
-  text-decoration: none;
-  text-align: left;
-  color: orange;
-  font: 12px;
-  padding-left: 5px;
-}
-
-.list {
-  padding-left: 25px;
-}
 
 body {
   text-align: center;
-  font-family: "Roboto", monospace;
+  font-family: "Autorich Sans", monospace;
 }
