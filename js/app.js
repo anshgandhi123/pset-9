@@ -37,9 +37,8 @@ function init() {
   render();
   victoryAudio.pause();
   victoryAudio.currentTime = 0
-  tieAudio.pause();
-  tieAudio.currentTime = 0;
 }
+
 
 function first() {
   do {
@@ -100,9 +99,6 @@ function getWinner() {
         oWinCount++;
         document.getElementById("secondList").innerHTML = oWinCount;
         victoryAudio.play();
-      }
-      if (win === "T") {
-        tieAudio.play();
       }
   }
 });
