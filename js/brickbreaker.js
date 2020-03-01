@@ -41,3 +41,32 @@ function init() {
     createblocks();
     start = true;
 }
+
+function game() {
+    if (start) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        draw();
+        checkCollision();
+        movementInDirection();
+        if (blocks.length === 0) {
+            win();
+        }
+    }
+    setTimeout(game, 20 - speed);
+}
+function movementInDirection() {
+    if (bounce.right) {
+        speed = 3 * changeSpeed;
+    }
+    else {
+        speed = -3 * changeSpeed;
+    }
+    if (bounce.up) {
+        verticalSpeed = -3;
+    }
+    else {
+        verticalSpeed = 3;
+    }
+    bounce.x += speed;
+    bounce.y += verticalSpeed;
+}
