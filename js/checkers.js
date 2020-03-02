@@ -1,4 +1,4 @@
-var squareClass = document.getElementsByClassName("square");
+var squareClass = document.getElementsByClassName("square"); 
 var whiteChecker = document.getElementsByClassName("white_checker");
 var blackChecker = document.getElementsByClassName("black_checker");
 var table = document.getElementById("table");
