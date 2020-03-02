@@ -195,9 +195,9 @@ function win() {
   winCount.innerHTML = countsWins + "";
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "black";
-  ctx.strokeStyle = "red";
+  ctx.strokeStyle = "lightgreen";
   ctx.lineWidth = 2.5;
   ctx.textAlign = "center";
   ctx.font = "48px Times New Roman";
-  ctx.fillText("You Win!", canvas.width/2, (canvas.height/2) - 40);
+  ctx.strokeText("You Win!", canvas.width/2, (canvas.height/2) - 40);
 }
