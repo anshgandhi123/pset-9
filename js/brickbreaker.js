@@ -191,8 +191,8 @@ function lose() {
 function win() {
   victoryAudio.play();
   start = false;
-  countsWins++
-  winCount.innerHTML = countsWins + ""
+  countsWins++;
+  winCount.innerHTML = countsWins + "";
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.fillStyle = "black";
   ctx.strokeStyle = "red";
@@ -200,5 +200,4 @@ function win() {
   ctx.textAlign = "center";
   ctx.font = "48px Times New Roman";
   ctx.fillText("You Win!", canvas.width/2, (canvas.height/2) - 40);
-
 }

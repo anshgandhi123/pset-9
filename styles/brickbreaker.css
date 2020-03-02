@@ -19,7 +19,7 @@ body {
   background:transparent
 }
 
-.headers {
+#headers {
   text-decoration: none;
   text-align: center;
   font: 16px;
