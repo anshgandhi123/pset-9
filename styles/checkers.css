@@ -1,54 +1,42 @@
-
-
-
-
-
-
-
-
-
- 
-
-
-h1{
-  margin: 0 auto;
-  font-size: 75px;
-  margin: 2%;
-  padding-bottom: 20px;
+.heading {
+  padding: 0px;
+  padding-left: 15px;
+  text-align: center;
+  color: red;
 }
 
 body {
-  background-color: #ccccff;
-  text-align: center;
+    background-image: url('https://i.gifer.com/DoOj.gif');
+    background-size: cover;
+    height: 120vh;
+    padding:0;
+    margin:0;
+    text-align: center;
 }
 
-div {
-  text-align: center;
-  display: inline-block;
-}
-.square{
+.square {
 	float: left;
 	width: 80px;
 	height: 80px;
 }
 
-.white_square{
+.white_square {
 	background-color:#F0D2B4;
 }
-.black_square{
+.black_square {
 	background-color :#BA7A3A;
 }
-.clear_float{
+.clear_float {
 	clear: both;
 }
 
-.table{
+.table {
 	position: relative;
 	width: 640px;
 	height: 640px;
 	margin: 0 auto;
 }
-.score{
+.score {
 	background-color: #1aaaad;
 	color: white;
 	display: none;
@@ -74,7 +62,7 @@ div {
   transition: 5s ease-in-out;
 }
 
-.checker{
+.checker {
 	top:10px;
 	left:10px;
 	width: 54px;
@@ -86,7 +74,7 @@ div {
 
 }
 
-.white_checker{
+.white_checker {
 	background: #CC0000;
  -webkit-transition: 0.3s ease-in-out;
 	-moz-transition: 0.3s ease-in-out;
@@ -94,7 +82,7 @@ div {
   transition: 0.3s ease-in-out;
 }
 
-.black_checker{
+.black_checker {
 	background: #00001F;
  -webkit-transition: 0.3s ease-in-out;
 	-moz-transition: 0.3s ease-in-out;
@@ -102,7 +90,7 @@ div {
   transition: 0.3s ease-in-out;
 }
 
-.black_background{
+.black_background {
 	position: fixed;
 	width: 100%;
 	height: 100%;
@@ -127,8 +115,4 @@ div {
 		width: 32px;
 		height: 32px;
 	}
-}
-
-p {
-  font-size: 30px;
 }
