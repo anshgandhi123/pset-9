@@ -27,7 +27,7 @@ window.onload = function() {
     document.getElementById("game").onclick = init;
     game();
 }
-document.addEventListener("keydown", getArrowKeys);
+document.addEventListener("keydown", movePaddle);
 function init() {
   victoryAudio.pause();
   victoryAudio.currentTime = 0
@@ -40,7 +40,7 @@ function init() {
     changeInSpeed = 1;
     speed = 0;
     blocks = [];
-    createblocks();
+    blocksCreation();
     start = true;
 }
 
@@ -51,7 +51,7 @@ function game() {
         crash();
         directionChange();
         if (blocks.length === 0) {
-            win();
+            victory();
         }
     }
     setTimeout(game, 20 - speed);
@@ -159,7 +159,7 @@ function draw() {
         ctx.strokeRect(blocks[i].x, blocks[i].y, blocks[i].width, blocks[i].height);
     }
 }
-function getArrowKeys(event) {
+function movePaddle(event) {
     if (start) {
         if (event.keyCode == 37) {
             moveuser(-1 * user.movement);
@@ -172,7 +172,7 @@ function getArrowKeys(event) {
 function moveuser(pixels) {
     user.x += pixels;
 }
-function createblocks() {
+function blocksCreation() {
     for (let y = 0; y <= 80; y += 40) {
         for (let x = 0; x < canvas.width; x += canvas.width / 10) {
             let boxes = {
@@ -188,7 +188,7 @@ function createblocks() {
 function lose() {
     init();
 }
-function win() {
+function victory() {
   victoryAudio.play();
   start = false;
   countsWins++;
