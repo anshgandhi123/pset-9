@@ -1,4 +1,4 @@
-var squareClass = document.getElementsByClassName("square"); 
+var squareClass = document.getElementsByClassName("square");
 var whiteChecker = document.getElementsByClassName("white_checker");
 var blackChecker = document.getElementsByClassName("black_checker");
 var table = document.getElementById("table");
@@ -43,7 +43,6 @@ var squares = function(square, index){
 		makeMove(index);
 	}
 }
-
 var checker = function(piece, color, square) {
 	this.id = piece;
 	this.color = color;

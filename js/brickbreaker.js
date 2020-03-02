@@ -162,10 +162,10 @@ function draw() {
 function movePaddle(event) {
     if (start) {
         if (event.keyCode == 37) {
-            moveuser(-1 * user.movement);
+            moveuser(-2 * user.movement);
         }
         else if (event.keyCode == 39) {
-            moveuser(user.movement);
+            moveuser(2 * user.movement);
         }
     }
 }
