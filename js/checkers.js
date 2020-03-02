@@ -149,3 +149,354 @@ function showMoves (piece) {
 			match = true;
 		}
 	}
+
+	if(firstMove && !attackMoves(firstMove)){
+		changeTurns(firstMove);
+		firstMove = undefined;
+		return false;
+	}
+	if(firstMove && firstMove != checkers[i] ){
+		return false;
+	}
+
+	if(!match) {
+	 return 0 ; // daca nu a fost gasit nicio potrivire ; se intampla cand de exemplu rosu muta iar tu apasi pe negru
+	}
+
+	/*===acum in functie de culoarea lor setez marginile si miscarile damei===*/
+	if(checkers[i].color =="white"){
+		tableLimit = 8;
+		tableLimitRight = 1;
+		tableLimitLeft = 8;
+		moveUpRight = 7;
+		moveUpLeft = 9;
+		moveDownRight = - 9;
+		moveDownLeft = -7;
+	}
+	else{
+		tableLimit = 1;
+		tableLimitRight = 8;
+		tableLimitLeft = 1;
+		moveUpRight = -7;
+		moveUpLeft = -9;
+		moveDownRight = 9;
+		moveDownLeft = 7;
+	}
+ 	/*===========VERIFIC DACA POT ATACA====*/
+
+
+		attackMoves(checkers[i]); // verifica daca am vreo miscare de atac
+
+
+	/*========DACA NU POT ATACA VERIFIC DACA POT MERGE======*/
+
+ 	if(!mustAttack){
+ 	  downLeft = checkMove( checkers[i] , tableLimit , tableLimitRight , moveUpRight , downLeft);
+		downRight = checkMove( checkers[i] , tableLimit , tableLimitLeft , moveUpLeft , downRight);
+		if(checkers[i].king){
+			upLeft = checkMove( checkers[i] , reverse_tableLimit , tableLimitRight , moveDownRight , upLeft);
+			upRight = checkMove( checkers[i], reverse_tableLimit , tableLimitLeft , moveDownLeft, upRight)
+		}
+	}
+	if(downLeft || downRight || upLeft || upRight){
+			return true;
+		}
+	return false;
+
+}
+
+
+function erase_roads(piece){
+	if(downRight) block[downRight].id.style.background = "#BA7A3A";
+	if(downLeft) block[downLeft].id.style.background = "#BA7A3A";
+	if(upRight) block[upRight].id.style.background = "#BA7A3A";
+	if(upLeft) block[upLeft].id.style.background = "#BA7A3A";
+}
+
+/*=============MUTAREA PIESEI======*/
+
+function makeMove (index) {
+	var isMove = false;
+	if(!selectedPiece) // daca jocu de abea a inceput si nu a fost selectata nicio piesa
+		return false;
+	if(index != upLeft && index != upRight && index != downLeft && index != downRight){
+		erase_roads(0);
+		selectedPiece = undefined;
+		return false;
+	}
+
+ /* =========perspectiva e a jucatorului care muta ======*/
+	if(checkers[1].color=="white"){
+		cpy_downRight = upRight;
+		cpy_downLeft = upLeft;
+		cpy_upLeft = downLeft;
+		cpy_upRight = downRight;
+	}
+	else{
+		cpy_downRight = upLeft;
+		cpy_downLeft = upRight;
+		cpy_upLeft = downRight;
+		cpy_upRight = downLeft;
+	}
+
+	if(mustAttack)  // ca sa stiu daca sar doar un rand sau 2
+		multiplier = 2;
+	else
+		multiplier = 1;
+
+
+		if(index == cpy_upRight){
+			isMove = true;
+			if(checkers[1].color=="white"){
+				// muta piesa
+				executeMove( multiplier * 1, multiplier * 1, multiplier * 9 );
+				//elimina piesa daca a fost executata o saritura
+				if(mustAttack) eliminateCheck(index - 9);
+			}
+			else{
+				executeMove( multiplier * 1, multiplier * -1, multiplier * -7);
+				if(mustAttack) eliminateCheck( index + 7 );
+			}
+		}
+
+		if(index == cpy_upLeft){
+
+			isMove = true;
+			if(checkers[1].color=="white"){
+				executeMove( multiplier * -1, multiplier * 1, multiplier * 7);
+			 	if(mustAttack)	eliminateCheck(index - 7 );
+			}
+			else{
+				executeMove( multiplier * -1, multiplier * -1, multiplier * -9);
+				if (mustAttack) eliminateCheck( index + 9 );
+			}
+		}
+
+		if(checkers[selectedPieceindex].king){
+
+			if(index == cpy_downRight){
+				isMove = true;
+				if(checkers[1].color=="white"){
+					executeMove( multiplier * 1, multiplier * -1, multiplier * -7);
+					if(mustAttack) eliminateCheck ( index  + 7) ;
+				}
+				else{
+					executeMove( multiplier * 1, multiplier * 1, multiplier * 9);
+					if(mustAttack) eliminateCheck ( index  - 9) ;
+				}
+			}
+
+		if(index == cpy_downLeft){
+			isMove = true;
+				if(checkers[1].color=="white"){
+					executeMove( multiplier * -1, multiplier * -1, multiplier * -9);
+					if(mustAttack) eliminateCheck ( index  + 9) ;
+				}
+				else{
+					executeMove( multiplier * -1, multiplier * 1, multiplier * 7);
+					if(mustAttack) eliminateCheck ( index  - 7) ;
+				}
+			}
+		}
+
+	erase_roads(0);
+	checkers[selectedPieceindex].checkIfKing();
+
+	if (isMove) {
+			playSound(moveSound);
+			secondMove = undefined;
+		 if(mustAttack) {
+			 	secondMove = attackMoves(checkers[selectedPieceindex]);
+		 }
+		if (secondMove){
+			firstMove = checkers[selectedPieceindex];
+			showMoves(firstMove);
+		}
+		else{
+			firstMove = undefined;
+		 	changeTurns(checkers[1]);
+		 	gameOver = checkIfLost();
+		 	if(gameOver) { setTimeout( declareWinner(),3000 ); return false};
+		 	gameOver = checkForMoves();
+		 	if(gameOver) { setTimeout( declareWinner() ,3000) ; return false};
+		}
+	}
+}
+
+function executeMove (X,Y,nSquare){
+	checkers[selectedPieceindex].changeCoord(X,Y);
+	checkers[selectedPieceindex].setCoord(0,0);
+	block[checkers[selectedPieceindex].ocupied_square].ocupied = false;
+	block[checkers[selectedPieceindex].ocupied_square + nSquare].ocupied = true;
+	block[checkers[selectedPieceindex].ocupied_square + nSquare].pieceId = 	block[checkers[selectedPieceindex].ocupied_square ].pieceId;
+	block[checkers[selectedPieceindex].ocupied_square ].pieceId = undefined;
+	checkers[selectedPieceindex].ocupied_square += nSquare;
+
+}
+
+function checkMove(Apiece,tLimit,tLimit_Side,moveDirection,theDirection){
+	if(Apiece.coordY != tLimit){
+		if(Apiece.coordX != tLimit_Side && !block[ Apiece.ocupied_square + moveDirection ].ocupied){
+			block[ Apiece.ocupied_square + moveDirection ].id.style.background = "#704923";
+			theDirection = Apiece.ocupied_square + moveDirection;
+		}
+	else
+			theDirection = undefined;
+	}
+	else
+		theDirection = undefined;
+	return theDirection;
+}
+
+
+
+function  checkAttack( check , X, Y , negX , negY, squareMove, direction){
+	if(check.coordX * negX >= 	X * negX && check.coordY *negY <= Y * negY && block[check.ocupied_square + squareMove ].ocupied && block[check.ocupied_square + squareMove].pieceId.color != check.color && !block[check.ocupied_square + squareMove * 2 ].ocupied){
+		mustAttack = true;
+		direction = check.ocupied_square +  squareMove*2 ;
+		block[direction].id.style.background = "#704923";
+		return direction ;
+	}
+	else
+		direction =  undefined;
+		return direction;
+}
+
+function eliminateCheck(indexx){
+	if(indexx < 1 || indexx > 64)
+		return  0;
+
+	var x =block[ indexx ].pieceId ;
+	x.alive =false;
+	block[ indexx ].ocupied = false;
+	x.id.style.display  = "none";
+}
+
+
+function attackMoves(ckc){
+
+ 		upRight = undefined;
+ 		upLeft = undefined;
+ 		downRight = undefined;
+ 		downLeft = undefined;
+
+ 	if(ckc.king ){
+ 		if(ckc.color == "white"){
+			upRight = checkAttack( ckc , 6, 3 , -1 , -1 , -7, upRight );
+			upLeft = checkAttack( ckc, 3 , 3 , 1 , -1 , -9 , upLeft );
+		}
+		else{
+	 		downLeft = checkAttack( ckc , 3, 6, 1 , 1 , 7 , downLeft );
+			downRight = checkAttack( ckc , 6 , 6 , -1, 1 ,9 , downRight );
+		}
+	}
+	if(ckc.color == "white"){
+	 	downLeft = checkAttack( ckc , 3, 6, 1 , 1 , 7 , downLeft );
+		downRight = checkAttack( ckc , 6 , 6 , -1, 1 ,9 , downRight );
+	}
+	else{
+		upRight = checkAttack( ckc , 6, 3 , -1 , -1 , -7, upRight );
+		upLeft = checkAttack( ckc, 3 , 3 , 1 , -1 , -9 , upLeft );
+	}
+
+ 	if(ckc.color== "black" && (upRight || upLeft || downLeft || downRight ) ) {
+	 	var p = upLeft;
+	 	upLeft = downLeft;
+	 	downLeft = p;
+
+	 	p = upRight;
+	 	upRight = downRight;
+	 	downRight = p;
+
+	 	p = downLeft ;
+	 	downLeft = downRight;
+	 	downRight = p;
+
+	 	p = upRight ;
+	 	upRight = upLeft;
+	 	upLeft = p;
+ 	}
+ 	if(upLeft != undefined || upRight != undefined || downRight != undefined || downLeft != undefined){
+ 		return true;
+
+ 	}
+ 	return false;
+}
+
+function changeTurns(ckc){
+		if(ckc.color=="white")
+	checkers = checkerBlack;
+else
+	checkers = checkerWhite;
+ }
+
+function checkIfLost(){
+	var i;
+	for(i = 1 ; i <= 12; i++)
+		if(checkers[i].alive)
+			return false;
+	return true;
+}
+
+function  checkForMoves(){
+	var i ;
+	for(i = 1 ; i <= 12; i++)
+		if(checkers[i].alive && showMoves(checkers[i].id)){
+			erase_roads(0);
+			return false;
+		}
+	return true;
+}
+
+function declareWinner(){
+	playSound(winSound);
+	blackColor.style.display = "inline";
+	score.style.display = "block";
+0
+if(checkers[1].color == "white")
+	score.innerHTML = "Black wins";
+else
+	score.innerHTML = "Red wins";
+}
+
+function playSound(sound){
+	if(sound) sound.play();
+}
+
+
+function getdimension (){
+	contor ++;
+ windowHeight = window.innerHeight
+	|| document.documentElement.clientHeight
+	|| document.body.clientHeight;  ;
+ windowWidth =  window.innerWidth
+	|| document.documentElement.clientWidth
+	|| document.body.clientWidth;
+}
+
+
+
+
+document.getElementsByTagName("BODY")[0].onresize = function(){
+
+	getdimension();
+	var cpy_screens = screens ;
+
+if(windowWidth < 650){
+		length = 50;
+		deviation = 6;
+		if(screens == 1) screens = -1;
+	}
+if(windowWidth > 650){
+		length = 80;
+		deviation = 10;
+		if(screens == -1) screens = 1;
+	}
+
+	if(screens !=cpy_screens){
+	for(var i = 1; i <= 12; i++){
+		checkerBlack[i].setCoord(0,0);
+		checkerWhite[i].setCoord(0,0);
+	}
+	}
+}
