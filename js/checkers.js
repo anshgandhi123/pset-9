@@ -160,11 +160,9 @@ function showMoves (piece) {
 	}
 
 	if(!match) {
-	 return 0 ; // daca nu a fost gasit nicio potrivire ; se intampla cand de exemplu rosu muta iar tu apasi pe negru
+	 return 0 ;
 	}
-
-	/*===acum in functie de culoarea lor setez marginile si miscarile damei===*/
-	if(checkers[i].color =="white"){
+  	if(checkers[i].color =="white"){
 		tableLimit = 8;
 		tableLimitRight = 1;
 		tableLimitLeft = 8;
@@ -182,13 +180,7 @@ function showMoves (piece) {
 		moveDownRight = 9;
 		moveDownLeft = 7;
 	}
- 	/*===========VERIFIC DACA POT ATACA====*/
-
-
-		attackMoves(checkers[i]); // verifica daca am vreo miscare de atac
-
-
-	/*========DACA NU POT ATACA VERIFIC DACA POT MERGE======*/
+		attackMoves(checkers[i]);
 
  	if(!mustAttack){
  	  downLeft = checkMove( checkers[i] , tableLimit , tableLimitRight , moveUpRight , downLeft);
@@ -205,7 +197,6 @@ function showMoves (piece) {
 
 }
 
-
 function erase_roads(piece){
 	if(downRight) block[downRight].id.style.background = "#BA7A3A";
 	if(downLeft) block[downLeft].id.style.background = "#BA7A3A";
@@ -213,11 +204,9 @@ function erase_roads(piece){
 	if(upLeft) block[upLeft].id.style.background = "#BA7A3A";
 }
 
-/*=============MUTAREA PIESEI======*/
-
 function makeMove (index) {
 	var isMove = false;
-	if(!selectedPiece) // daca jocu de abea a inceput si nu a fost selectata nicio piesa
+	if(!selectedPiece)
 		return false;
 	if(index != upLeft && index != upRight && index != downLeft && index != downRight){
 		erase_roads(0);
@@ -225,7 +214,6 @@ function makeMove (index) {
 		return false;
 	}
 
- /* =========perspectiva e a jucatorului care muta ======*/
 	if(checkers[1].color=="white"){
 		cpy_downRight = upRight;
 		cpy_downLeft = upLeft;
@@ -239,7 +227,7 @@ function makeMove (index) {
 		cpy_upRight = downLeft;
 	}
 
-	if(mustAttack)  // ca sa stiu daca sar doar un rand sau 2
+	if(mustAttack)
 		multiplier = 2;
 	else
 		multiplier = 1;
@@ -248,9 +236,8 @@ function makeMove (index) {
 		if(index == cpy_upRight){
 			isMove = true;
 			if(checkers[1].color=="white"){
-				// muta piesa
+
 				executeMove( multiplier * 1, multiplier * 1, multiplier * 9 );
-				//elimina piesa daca a fost executata o saritura
 				if(mustAttack) eliminateCheck(index - 9);
 			}
 			else{
@@ -348,8 +335,6 @@ function checkMove(Apiece,tLimit,tLimit_Side,moveDirection,theDirection){
 	return theDirection;
 }
 
-
-
 function  checkAttack( check , X, Y , negX , negY, squareMove, direction){
 	if(check.coordX * negX >= 	X * negX && check.coordY *negY <= Y * negY && block[check.ocupied_square + squareMove ].ocupied && block[check.ocupied_square + squareMove].pieceId.color != check.color && !block[check.ocupied_square + squareMove * 2 ].ocupied){
 		mustAttack = true;
@@ -371,7 +356,6 @@ function eliminateCheck(indexx){
 	block[ indexx ].ocupied = false;
 	x.id.style.display  = "none";
 }
-
 
 function attackMoves(ckc){
 
@@ -473,9 +457,6 @@ function getdimension (){
 	|| document.documentElement.clientWidth
 	|| document.body.clientWidth;
 }
-
-
-
 
 document.getElementsByTagName("BODY")[0].onresize = function(){
 
