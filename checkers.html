@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
   <head>
-    <title>APCSP Problem Set 9</title>
-    <link rel="stylesheet" href="styles/styles.css"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="js/app.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display" rel="stylesheet" />
+    <link href="styles/checkers.css" rel="stylesheet" type="text/css" />
+    <script defer src="js/checkers.js"></script>
   </head>
   <body>
-    <!-- navigation bar -->
+    <h1>Checkers</h1>
     <div class ="navigationbar">
       <div class="w3-bar w3-black w3-card">
-        <a href="index.html" class="w3-bar-item w3-button w3-padding-small">Home</a>
+        <a href="index.html" class="w3-bar-item w3-button w3-padding-small">Home </a>
         <a href="ticTacToe.html" class="w3-bar-item w3-button w3-padding-small w3-hide-small">Tic-Tac-Toe</a>
         <a href="connectFour.html" class="w3-bar-item w3-button w3-padding-small w3-hide-small">Connect Four</a>
         <a href="checkers.html" class="w3-bar-item w3-button w3-padding-small w3-hide-small">Checkers</a>
@@ -19,8 +23,110 @@
         <a href="brickbreakerhard.html" class="w3-bar-item w3-button w3-padding-small w3-hide-small">Brick Breaker Hard</a>
       </div>
     </div>
-    <h1 class="heading">Checkers</h1>
-    <h5 class="headers">Welcome to Checkers! All normal rules apply to this game! Currently, you can play against an AI! You may be prompted to see who goes first.</h5>
-    <h6 class="headers">Have fun!</h6>
+    <div class="whiteChecker" style="display:none"> </div>
+    <div class="blackChecker" style="display:none"> </div>
+    <div class="square" style="display: none" id ="ht"> </div>
+    <div class="blackColor" id="blackColor"> </div>
+	  <div class="score" id="score">
+		<br>
+	 </div>
+    <div class="table" id="table">
+     <div class="whiteChecker"> </div>
+     <div class="whiteChecker"> </div>
+     <div class="whiteChecker"> </div>
+     <div class="whiteChecker"> </div>
+     <div class="whiteChecker"> </div>
+     <div class="whiteChecker"> </div>
+     <div class="whiteChecker"> </div>
+     <div class="whiteChecker"> </div>
+     <div class="whiteChecker"> </div>
+     <div class="whiteChecker"> </div>
+     <div class="whiteChecker"> </div>
+     <div class="whiteChecker"> </div>
+     <div class="blackChecker"> </div>
+     <div class="blackChecker"> </div>
+     <div class="blackChecker"> </div>
+     <div class="blackChecker"> </div>
+     <div class="blackChecker"> </div>
+     <div class="blackChecker"> </div>
+     <div class="blackChecker"> </div>
+     <div class="blackChecker"> </div>
+     <div class="blackChecker"> </div>
+     <div class="blackChecker"> </div>
+     <div class="blackChecker"> </div>
+     <div class="blackChecker"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="clear"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="clear"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="clear"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="clear"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="clear"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="clear"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="clear"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="whiteSquare"> </div>
+     <div class="blackSquare"> </div>
+     <div class="clear"> </div>
+     </div>
   </body>
 </html>
