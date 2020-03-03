@@ -92,23 +92,6 @@ body {
   cursor: pointer;
 }
 
- #reset-scoreboard {
-   background-color: white;
-   border: 1px solid black;
-   color: black;
-   font-size: 21px;
-   line-height: 55px;
-   margin: 1%;
-   text-align: center;
-   width: 456px;
- }
-
- #reset-scoreboard:hover {
-   background-color: black;
-   color: white;
-   cursor: pointer;
- }
-
  #xWinCount {
     list-style-type: none;
     float: left;

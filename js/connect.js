@@ -311,12 +311,3 @@ function getWinner() {
 
   return winner ? winner : board.includes("") ? null : "T";
 }
-
-function resetScoreboard() {
-    redWins = 0;
-    yellowWins = 0;
-    ties = 0;
-    redScore.innerHTML = redWins
-    whiteScore.innerHTML = yellowWins
-    tieScore.innerHTML = ties
-}
