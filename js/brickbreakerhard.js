@@ -1,4 +1,4 @@
-const canvas = document.getElementById("game");
+const canvas = document.getElementById("game"); 
 const ctx = canvas.getContext("2d");
 let winCount = document.getElementById("headers")
 let speed;

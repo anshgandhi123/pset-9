@@ -1,5 +1,5 @@
 ///////////////////// CONSTANTS /////////////////////////////////////
-const winningConditions = [
+const winningConditions = [ 
   [0, 1, 2, 3],
   [1, 2, 3, 4],
   [2, 3, 4, 5],
