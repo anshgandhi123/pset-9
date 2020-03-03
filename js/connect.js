@@ -142,6 +142,7 @@ window.onload = init;
 document.getElementById("board").onclick = takeTurn;
 document.getElementById("reset-button").onclick = init;
 document.getElementById("reset-scoreboard").onclick = resetScoreboard;
+const victoryAudio = document.getElementById("victoryAudio");
 ///////////////////// FUNCTIONS /////////////////////////////////////
 function init() {
   board = [
@@ -176,6 +177,24 @@ function render() {
   board.forEach(function(mark, index) {
     squares[index].style.backgroundColor = mark;
   });
+  if (win === "red") {
+    redWins +=  1
+    victoryAudio.play();
+    window.alert("RED WINS!")
+  }
+  else if (win === "yellow") {
+    yellowWins +=  1
+    victoryAudio.play();
+    window.alert("YELLOW WINS!")
+  }
+  else if (win === "T") {
+    ties += 1
+    window.alert("It's a tie!")
+  }
+  redScore.innerHTML = redWins
+  whiteScore.innerHTML = yellowWins
+  tieScore.innerHTML = ties
+
   var message = ""
   message.innerHTML =
     win === "T" ? "It's a tie!" : win ? `${win} wins!` : `Turn: ${turn}`;
@@ -287,19 +306,6 @@ function getWinner() {
     ) {
       winner = board[condition[0]];
 
-        if (win === "red") {
-          redWins +=  1
-        }
-        else if (win === "yellow") {
-          yellowWins +=  1
-        }
-        else if (win === "T") {
-          ties += 1
-        }
-        redScore.innerHTML = redWins
-        whiteScore.innerHTML = yellowWins
-        tieScore.innerHTML = ties
-
     }
   });
 
@@ -310,7 +316,6 @@ function resetScoreboard() {
     redWins = 0;
     yellowWins = 0;
     ties = 0;
-
     redScore.innerHTML = redWins
     whiteScore.innerHTML = yellowWins
     tieScore.innerHTML = ties

@@ -25,6 +25,7 @@ const tieAudio = document.getElementById("tieAudio");
 window.onload = init;
 document.getElementById("board").onclick = takeTurn;
 document.getElementById("reset-button").onclick = init;
+document.getElementById("reset-scoreboard").onclick = resetScoreboard;
 ///////////////////// FUNCTIONS /////////////////////////////////////
 function init() {
   board = [
@@ -75,6 +76,7 @@ function takeTurn(e) {
       if (win === "T") {
         tieCount++;
         document.getElementById("thirdList").innerHTML = tieCount;
+        window.alert("It's a tie!")
       }
       render();
     }
@@ -93,14 +95,26 @@ function getWinner() {
       if (winner === "X") {
         xWinCount++;
         document.getElementById("list").innerHTML = xWinCount;
+        window.alert("X WINS!")
         victoryAudio.play();
       }
       if (winner === "O") {
         oWinCount++;
         document.getElementById("secondList").innerHTML = oWinCount;
+        window.alert("O WINS!")
         victoryAudio.play();
       }
   }
 });
   return winner ? winner : board.includes("") ? null : "T";
+}
+
+function resetScoreboard() {
+    xWinCount = 0;
+    oWinCount = 0;
+    tieCount = 0;
+
+    list.innerHTML = xWinCount
+    secondList.innerHTML = oWinCount
+    thirdList.innerHTML = tieCount
 }
