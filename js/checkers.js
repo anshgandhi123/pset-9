@@ -24,6 +24,7 @@ var secondMove;
 var mustAttack = false;
 var multiplier = 1
 var tableLimit,reverse_tableLimit ,  moveUpLeft,moveUpRight, moveDownLeft,moveDownRight , tableLimitLeft, tableLimitRight;
+const victoryAudio = document.getElementById("victoryAudio");
 
 	getdimension();
 	if (windowWidth > 640) {
@@ -71,7 +72,7 @@ checker.prototype.setCoord = function(X, Y){
 }
 
 checker.prototype.changeCoord = function(X, Y) {
-	this.coordY +=Y;
+	this.coordY += Y;
 	this.coordX += X;
 }
 
@@ -91,14 +92,14 @@ for (var i = 1; i <=64; i++)
 
 for (var i = 1; i <= 4; i++) {
 	checkerWhite[i] = new checker(whiteChecker[i], "white", 2*i -1 );
-	checkerWhite[i].setCoord(0,0);
+	checkerWhite[i].setCoord(0, 0);
 	block[2*i - 1].ocupied = true;
 	block[2*i - 1].pieceId = checkerWhite[i];
 }
 
 for (var i = 5; i <= 8; i++){
 	checkerWhite[i] = new checker(whiteChecker[i], "white", 2*i );
-	checkerWhite[i].setCoord(0,0);
+	checkerWhite[i].setCoord(0, 0);
 	block[2*i].ocupied = true;
 	block[2*i].pieceId = checkerWhite[i];
 }
@@ -137,7 +138,7 @@ function showMoves (piece) {
 	var match = false;
 	mustAttack = false;
 	if(selectedPiece) {
-			erase_roads(selectedPiece);
+			eraseOptions(selectedPiece);
 	}
 	selectedPiece = piece;
 	var i, j;
@@ -196,7 +197,7 @@ function showMoves (piece) {
 
 }
 
-function erase_roads(piece){
+function eraseOptions(piece){
 	if(downRight) block[downRight].id.style.background = "#BA7A3A";
 	if(downLeft) block[downLeft].id.style.background = "#BA7A3A";
 	if(upRight) block[upRight].id.style.background = "#BA7A3A";
@@ -208,7 +209,7 @@ function makeMove (index) {
 	if(!selectedPiece)
 		return false;
 	if(index != upLeft && index != upRight && index != downLeft && index != downRight){
-		erase_roads(0);
+		eraseOptions(0);
 		selectedPiece = undefined;
 		return false;
 	}
@@ -285,11 +286,10 @@ function makeMove (index) {
 			}
 		}
 
-	erase_roads(0);
+	eraseOptions(0);
 	checkers[selectedPieceindex].checkIfKing();
 
 	if (isMove) {
-			playSound(moveSound);
 			secondMove = undefined;
 		 if(mustAttack) {
 			 	secondMove = attackMoves(checkers[selectedPieceindex]);
@@ -302,9 +302,9 @@ function makeMove (index) {
 			firstMove = undefined;
 		 	changeTurns(checkers[1]);
 		 	gameOver = checkIfLost();
-		 	if(gameOver) { setTimeout( declareWinner(),3000 ); return false};
+		 	if(gameOver) { setTimeout( victory(),3000 ); return false};
 		 	gameOver = checkForMoves();
-		 	if(gameOver) { setTimeout( declareWinner() ,3000) ; return false};
+		 	if(gameOver) { setTimeout( victory() ,3000) ; return false};
 		}
 	}
 }
@@ -346,13 +346,13 @@ function  checkAttack( check , X, Y , negX , negY, squareMove, direction){
 		return direction;
 }
 
-function eliminateCheck(indexx){
-	if(indexx < 1 || indexx > 64)
+function eliminateCheck(secondIndex){
+	if(secondIndex < 1 || secondIndex > 64)
 		return  0;
 
-	var x =block[ indexx ].pieceId ;
+	var x = block[secondIndex].pieceId ;
 	x.alive =false;
-	block[ indexx ].ocupied = false;
+	block[secondIndex].ocupied = false;
 	x.id.style.display  = "none";
 }
 
@@ -363,21 +363,21 @@ function attackMoves(ckc){
  		downRight = undefined;
  		downLeft = undefined;
 
- 	if(ckc.king ){
+ 	if(ckc.king ) {
  		if(ckc.color == "white"){
 			upRight = checkAttack( ckc , 6, 3 , -1 , -1 , -7, upRight );
 			upLeft = checkAttack( ckc, 3 , 3 , 1 , -1 , -9 , upLeft );
 		}
-		else{
+		else {
 	 		downLeft = checkAttack( ckc , 3, 6, 1 , 1 , 7 , downLeft );
 			downRight = checkAttack( ckc , 6 , 6 , -1, 1 ,9 , downRight );
 		}
 	}
-	if(ckc.color == "white"){
+	if (ckc.color == "white") {
 	 	downLeft = checkAttack( ckc , 3, 6, 1 , 1 , 7 , downLeft );
 		downRight = checkAttack( ckc , 6 , 6 , -1, 1 ,9 , downRight );
 	}
-	else{
+	else {
 		upRight = checkAttack( ckc , 6, 3 , -1 , -1 , -7, upRight );
 		upLeft = checkAttack( ckc, 3 , 3 , 1 , -1 , -9 , upLeft );
 	}
@@ -425,36 +425,27 @@ function  checkForMoves(){
 	var i ;
 	for(i = 1 ; i <= 12; i++)
 		if(checkers[i].alive && showMoves(checkers[i].id)){
-			erase_roads(0);
+			eraseOptions(0);
 			return false;
 		}
 	return true;
 }
 
-function declareWinner(){
-	playSound(winSound);
-	blackColor.style.display = "inline";
-	score.style.display = "block";
-0
-if(checkers[1].color == "white")
-	score.innerHTML = "Black wins";
-else
-	score.innerHTML = "Red wins";
+function victory() {
+if(checkers[1].color == "white") {
+	score.innerHTML = "White Wins!";
+	victoryAudio.play();
 }
-
-function playSound(sound){
-	if(sound) sound.play();
+else {
+	score.innerHTML = "Black Wins!";
+	victoryAudio.play();
 }
-
+}
 
 function getdimension (){
-	contor ++;
- windowHeight = window.innerHeight
-	|| document.documentElement.clientHeight
-	|| document.body.clientHeight;  ;
- windowWidth =  window.innerWidth
-	|| document.documentElement.clientWidth
-	|| document.body.clientWidth;
+	contor++;
+ windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;  ;
+ windowWidth =  window.innerWidth 	|| document.documentElement.clientWidth	|| document.body.clientWidth;
 }
 
 document.getElementsByTagName("BODY")[0].onresize = function(){

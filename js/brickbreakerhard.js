@@ -8,6 +8,7 @@ let start = false;
 let blocks = [];
 let countsWins = 0;
 const victoryAudio = document.getElementById("victoryAudio");
+
 let user = {
     x: (canvas.width / 2) - 40,
     y: canvas.height - 10,
