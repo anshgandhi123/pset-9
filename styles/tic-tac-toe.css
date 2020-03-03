@@ -6,22 +6,22 @@
 body {
     background-image: url('https://i.gifer.com/DoOj.gif');
     background-size: cover;
-    height: 120vh;
+    height: 150vh;
     padding:0;
     margin:0;
-}
-
-.heading {
-  padding: 0px;
-  padding-left: 15px;
-  text-align: center;
-  color: red;
 }
 
 .headers {
   text-decoration: none;
   text-align: center;
   font: 16px;
+  color: orange;
+}
+
+.heading {
+  padding: 0px;
+  padding-left: 15px;
+  text-align: center;
   color: orange;
 }
 
@@ -37,8 +37,10 @@ body {
 }
 
 .count {
+  padding: 0px;
+  padding-left: 15px;
+  text-align: center;
   color: orange;
-  padding-bottom: 1px;
 }
 
 .container {
@@ -90,15 +92,36 @@ body {
   cursor: pointer;
 }
 
-#xWinCount {
-   list-style-type: none;
-   float: left;
+ #reset-scoreboard {
+   background-color: white;
+   border: 1px solid black;
+   color: black;
+   font-size: 21px;
+   line-height: 55px;
+   margin: 1%;
+   text-align: center;
+   width: 456px;
  }
-#oWinCount {
-   list-style-type: none;
-   float: right;
+
+ #reset-scoreboard:hover {
+   background-color: black;
+   color: white;
+   cursor: pointer;
  }
- #tieCount {
-   list-style-type: none;
-   float: right;
- }
+
+ #xWinCount {
+    list-style-type: none;
+    float: left;
+    color: orange
+  }
+ #oWinCount {
+    list-style-type: none;
+    float: right;
+    color: orange
+
+  }
+  #tieCount {
+    list-style-type: none;
+    float: right;
+    color: orange
+  }

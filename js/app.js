@@ -60,7 +60,8 @@ function render() {
   board.forEach(function(mark, index) {
     squares[index].textContent = mark;
   });
-  message.textContent =
+  var message = ""
+  message.innerHTML =
     win === "T" ? "It's a tie!" : win ? `${win} wins!` : `Turn: ${turn}`;
 }
 
@@ -95,14 +96,14 @@ function getWinner() {
       if (winner === "X") {
         xWinCount++;
         document.getElementById("list").innerHTML = xWinCount;
-        window.alert("X WINS!")
         victoryAudio.play();
+        window.alert("X WINS!")
       }
       if (winner === "O") {
         oWinCount++;
         document.getElementById("secondList").innerHTML = oWinCount;
-        window.alert("O WINS!")
         victoryAudio.play();
+        window.alert("O WINS!")
       }
   }
 });
