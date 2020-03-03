@@ -1,0 +1,156 @@
+* {
+  text-decoration: none;
+  color: black;
+  font: Arial;
+}
+
+#board {
+  display:flex;
+  flex-wrap: wrap;
+  width: 800px;
+  border-style: solid;
+  border-color: green
+  justify-content: center;
+  padding: 20px;
+  background-color: #transparent;
+}
+
+body {
+    background-image: url('https://i.gifer.com/4ov6.gif');
+    background-size: cover;
+    height: 100%;
+    padding:0;
+    margin:0;
+}
+
+.heading {
+  padding: 5px;
+  padding-left: 15px;
+  text-align: center;
+  color: red;
+  background:transparent
+}
+
+.headers {
+  text-decoration: none;
+  text-align: center;
+  font: 16px;
+  color: orange;
+}
+
+.navigationbar {
+  background-color: black;
+  color: white;
+  padding-left: 0px;
+}
+
+#reset-button {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  font-size: 21px;
+  line-height: 55px;
+  margin: 1%;
+  text-align: center;
+  width: 456px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#reset-button:hover {
+  background-color: lightgray;
+  color: black;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.column {
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+}
+
+.wrap {
+  flex-wrap: wrap;
+  height: 912px;
+  width: 1064px;
+}
+
+.square {
+  	border: 1px solid rgba(0, 0, 0, 0.75);
+  	height: 100px;
+  	user-select: none;
+  	width: 100px;
+    border-radius: 50px;
+    margin: 3px 3px;
+    background-color: white;
+
+}
+
+.square:hover {
+  background-color: white;
+  cursor: pointer;
+}
+
+.x {
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  font-size: 32px;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}
+
+.o {
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  font-size: 32px;
+  background-color: white
+  color: black;
+  cursor: pointer;
+}
+
+.input {
+  width: 40px;
+  height: 40px;
+  border-radius: 2px;
+  border-color: black;
+  border-width: 3px;
+  text-align: center;
+  font-size: 32px;
+  font-weight: lighter;
+}
+
+.wins {
+  padding: 20px;
+  margin: 2%;
+}
+
+#x {
+  margin: 1%;
+  padding: 2px;
+}
+
+#reset-scoreboard {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  font-size: 21px;
+  line-height: 55px;
+  margin: 1%;
+  text-align: center;
+  width: 456px;
+}
+
+#reset-scoreboard:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}

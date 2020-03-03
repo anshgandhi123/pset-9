@@ -176,8 +176,8 @@ function render() {
   board.forEach(function(mark, index) {
     squares[index].style.backgroundColor = mark;
   });
-
-  message.textContent =
+  var message = ""
+  message.innerHTML =
     win === "T" ? "It's a tie!" : win ? `${win} wins!` : `Turn: ${turn}`;
   }
 
@@ -185,7 +185,7 @@ function takeTurn(e) {
   if (!win) {
     let index = squares.findIndex(function(square) {
       return square === e.target;
-    });
+    })
 
     if (firstColumn.includes(index)) {
       let area = -1;
